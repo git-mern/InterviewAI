@@ -5,7 +5,7 @@ const DashboardLayout = ({ children }) => {
   return (
     <div className="">
       <Navbar />
-      {children}
+      <div className="mx-5 md:mx-18 lg:mx-32">{children}</div>
     </div>
   );
 };

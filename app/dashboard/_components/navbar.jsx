@@ -27,9 +27,9 @@ const Navbar = () => {
           </Link>
           <li
             className={`hover:text-black cursor-pointer transition-all hover:font-semibold ${
-              path == "/dashboard/questions" && "text-black font-semibold"
+              path == `/dashboard/interview` && "text-black font-semibold"
             }`}>
-            Questions
+            Interview
           </li>
           <li
             className={`hover:text-black cursor-pointer transition-all hover:font-semibold ${
