@@ -21,6 +21,7 @@ const AnswersPage = ({ interviewQuestion, active, interviewData }) => {
     results,
     startSpeechToText,
     stopSpeechToText,
+    setResults,
   } = useSpeechToText({
     continuous: true,
     useLegacyResults: false,
@@ -80,8 +81,10 @@ const AnswersPage = ({ interviewQuestion, active, interviewData }) => {
 
     if (resp) {
       toast("User Answer Recorded Successfully!");
+      setAnswer("");
+      setResults([]);
     }
-    setAnswer("");
+    setResults([]);
     setloading(false);
   };
   return (
