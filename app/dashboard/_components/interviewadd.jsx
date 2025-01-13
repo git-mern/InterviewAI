@@ -104,7 +104,7 @@ const InterviewAdd = () => {
                 <DialogDescription>
                   <label htmlFor="">Job Role*</label>
                   <Input
-                    placeholder="job role"
+                    placeholder="Ex. Software Engineer"
                     required
                     onChange={(event) => setRole(event.target.value)}
                   />
@@ -114,7 +114,7 @@ const InterviewAdd = () => {
                 <DialogDescription>
                   <label htmlFor="">Job Description/Tech stack*</label>
                   <Textarea
-                    placeholder="Ex. Software Engineer"
+                    placeholder="Ex. Nextjs, Reactjs"
                     required
                     onChange={(event) => setDesc(event.target.value)}
                   />
@@ -124,6 +124,7 @@ const InterviewAdd = () => {
                 <DialogDescription>
                   <label htmlFor="">Job Experience*</label>
                   <Input
+                    placeholder="Ex. 1"
                     type="number"
                     required
                     onChange={(event) => setExp(event.target.value)}
