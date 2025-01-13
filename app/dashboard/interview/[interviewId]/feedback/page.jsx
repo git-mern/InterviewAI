@@ -4,6 +4,11 @@ import { db } from "@/utils/db";
 import { UserAnswer } from "@/utils/schema";
 import { eq } from "drizzle-orm";
 import React, { useEffect, useState } from "react";
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/ui/collapsible";
 
 const FeedbackPage = ({ params }) => {
   const [feedbackList, setFeedbackList] = useState([]);
@@ -45,6 +50,19 @@ const FeedbackPage = ({ params }) => {
         Find below interview questions with correct Answer, Your Answer and
         Feedback for improvement.
       </h2>
+
+      {feedbackList &&
+        feedbackList.map((item, index) => (
+          <div key={index}>
+            <Collapsible>
+              <CollapsibleTrigger>{item.question}</CollapsibleTrigger>
+              <CollapsibleContent>
+                Yes. Free to use for personal and commercial projects. No
+                attribution required.
+              </CollapsibleContent>
+            </Collapsible>
+          </div>
+        ))}
     </div>
   );
 };
