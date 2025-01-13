@@ -13,7 +13,7 @@ const Navbar = () => {
 
   return (
     <div className="flex py-4 px-6 items-center justify-between bg--500 shadow-sm border-t-2 border-neutral-300 shadow-neutral-500 m-4 rounded-full backdrop-blur-md">
-      <Link href="/dashboard" className="text-red-500 font-bold">
+      <Link href="/dashboard" className="text-red-500 font-bold text-xl ">
         InterviewAI
       </Link>
       <div>

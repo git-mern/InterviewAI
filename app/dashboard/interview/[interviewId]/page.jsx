@@ -5,6 +5,7 @@ import { db } from "@/utils/db";
 import { Interview } from "@/utils/schema";
 import { eq } from "drizzle-orm";
 import { Lightbulb, WebcamIcon } from "lucide-react";
+import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import Webcam from "react-webcam";
 
@@ -99,7 +100,11 @@ const InterviewIdPage = ({ params }) => {
           )}
         </div>
       </div>
-      <Button className="mb-5">Start Interview</Button>
+      {interviewId && (
+        <Link href={`/dashboard/interview/${interviewId}/start`}>
+          <Button className="mb-5">Start Interview</Button>
+        </Link>
+      )}
     </div>
   );
 };
