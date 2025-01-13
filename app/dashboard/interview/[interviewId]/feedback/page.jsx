@@ -9,9 +9,13 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
+import { ChevronsUpDown } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
 
 const FeedbackPage = ({ params }) => {
   const [feedbackList, setFeedbackList] = useState([]);
+  const router = useRouter();
   useEffect(() => {
     const unwrapParams = async () => {
       try {
@@ -54,15 +58,36 @@ const FeedbackPage = ({ params }) => {
       {feedbackList &&
         feedbackList.map((item, index) => (
           <div key={index}>
-            <Collapsible>
-              <CollapsibleTrigger>{item.question}</CollapsibleTrigger>
+            <Collapsible className="mt-10">
+              <CollapsibleTrigger className="p-2 bg-secondary rounded-md my-4 text-left flex justify-between gap-7 w-full">
+                {item.question}
+                <ChevronsUpDown className="h-5 w-5" />
+              </CollapsibleTrigger>
               <CollapsibleContent>
-                Yes. Free to use for personal and commercial projects. No
-                attribution required.
+                <div className="flex flex-col gap-2">
+                  <h2 className="p-2 border rounded-md text-red-700">
+                    <strong>Rating: </strong>
+                    {item.rating}
+                  </h2>
+                  <h2 className="p-2 border rounded-md text-sm text-red-700">
+                    <strong>Your answer:</strong>
+                    {item.userAns}
+                  </h2>
+                  <h2 className="p-2 border rounded-md text-sm text-green-800">
+                    <strong>Correct Answer: </strong>
+                    {item.correctAns}
+                  </h2>
+                  <h2 className="p-2 border rounded-md text-sm mb-4 text-blue-500">
+                    <strong>Feedback: </strong>
+                    {item.feedback}
+                  </h2>
+                </div>
               </CollapsibleContent>
             </Collapsible>
           </div>
         ))}
+
+      <Button onClick={() => router.replace("/dashboard")}>Home</Button>
     </div>
   );
 };

@@ -72,7 +72,7 @@ const AnswersPage = ({ interviewQuestion, active, interviewData }) => {
       mockIdRef: interviewData?.mockId,
       question: interviewQuestion[active]?.question,
       correctAns: interviewQuestion[active]?.answer,
-      UserAns: answer,
+      userAns: answer,
       feedback: finalJsonFeedbackResp?.feedback,
       rating: finalJsonFeedbackResp?.rating,
       userEmail: user?.primaryEmailAddress.emailAddress,
