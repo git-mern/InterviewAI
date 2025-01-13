@@ -71,6 +71,7 @@ const InterviewAdd = () => {
           .returning({ mockId: Interview.mockId });
 
         console.log("id:", dbresponse);
+
         if (dbresponse) {
           setOpen(false);
           router.push(`/dashboard/interview/${dbresponse[0]?.mockId}`);
