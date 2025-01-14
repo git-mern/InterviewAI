@@ -14,7 +14,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { chatSession } from "@/utils/gemini-ai-moddel";
-import { LoaderCircle } from "lucide-react";
+import { LoaderCircle, PlusIcon } from "lucide-react";
 import { db } from "@/utils/db";
 import { Interview } from "@/utils/schema";
 import { v4 as uuidv4 } from "uuid";
@@ -30,14 +30,13 @@ const InterviewAdd = () => {
   const [loading, setLoading] = useState(false);
   const [jsonResponse, setJsonResponse] = useState([]);
   const router = useRouter();
-
   const user = useUser();
 
   const onSubmit = async (e) => {
     try {
       setLoading(true);
       e.preventDefault();
-      console.log(desc, role, exp);
+      // console.log(desc, role, exp);
 
       const prompt =
         "Job Position: " +
@@ -53,7 +52,7 @@ const InterviewAdd = () => {
         .text()
         .replace("```json", "")
         .replace("```", " ");
-      console.log(JSON.parse(newresponse));
+      // console.log(JSON.parse(newresponse));
       setJsonResponse(newresponse);
 
       if (newresponse) {
@@ -65,35 +64,41 @@ const InterviewAdd = () => {
             jobPosition: role,
             jobDescription: desc,
             jobExp: exp,
-            createdBy: user?.primaryEmailAddress?.emailAddress || "unknown",
+            createdBy: user?.user?.primaryEmailAddress?.emailAddress,
+
             createdAt: moment().format("DD-MM-yyyy"),
           })
           .returning({ mockId: Interview.mockId });
 
-        console.log("id:", dbresponse);
+        // console.log("id:", dbresponse);
 
         if (dbresponse) {
           setOpen(false);
           router.push(`/dashboard/interview/${dbresponse[0]?.mockId}`);
         }
       } else {
-        console.log("something wrong");
+        // console.log("something wrong");
       }
     } catch (error) {
-      console.log("something wrong ", error);
+      // console.log("something wrong ", error);
     }
     setLoading(false);
   };
 
   return (
     <div>
-      <div
-        className="p-10 border rounded-lg hover:scale-105 cursor-pointer hover:shadow-md transition-all"
-        onClick={() => setOpen(true)}>
-        <p className="font-semibold text-center ">Create new</p>
-      </div>
+      <Dialog open={open} onOpenChange={setOpen}>
+        <DialogTrigger asChild>
+          <div
+            className="py-10 mx-4 bg-neutral-200 px-32 border rounded-lg hover:scale-105 cursor-pointer hover:shadow-md transition-all"
+            onClick={() => setOpen(true)}>
+            <p className="font-semibold flex p-2 ">
+              <PlusIcon />
+              Create new
+            </p>
+          </div>
+        </DialogTrigger>
 
-      <Dialog open={open}>
         <DialogContent className="max-w-2xl ">
           <DialogHeader>
             <DialogTitle>Interview Details</DialogTitle>
@@ -101,11 +106,14 @@ const InterviewAdd = () => {
               Add more about exp, roles and skills
             </DialogTitle>
             <form onSubmit={onSubmit}>
-              <div className="gap-2 my-3">
+              <div className="my-2">
                 <DialogDescription>
-                  <label htmlFor="">Job Role*</label>
+                  <label htmlFor="" className="text-black">
+                    Job Role*
+                  </label>
                   <Input
                     placeholder="Ex. Software Engineer"
+                    className="my-1"
                     required
                     onChange={(event) => setRole(event.target.value)}
                   />
@@ -113,8 +121,11 @@ const InterviewAdd = () => {
               </div>
               <div className="gap-2 my-3">
                 <DialogDescription>
-                  <label htmlFor="">Job Description/Tech stack*</label>
+                  <label htmlFor="" className="text-black">
+                    Job Description/Tech stack*
+                  </label>
                   <Textarea
+                    className="my-1"
                     placeholder="Ex. Nextjs, Reactjs"
                     required
                     onChange={(event) => setDesc(event.target.value)}
@@ -123,8 +134,11 @@ const InterviewAdd = () => {
               </div>
               <div className="gap-2 my-3">
                 <DialogDescription>
-                  <label htmlFor="">Job Experience*</label>
+                  <label htmlFor="" className="text-black">
+                    Job Experience*
+                  </label>
                   <Input
+                    className="my-1"
                     placeholder="Ex. 1"
                     type="number"
                     required
@@ -138,7 +152,7 @@ const InterviewAdd = () => {
                   variant="destructive"
                   className="mt-2"
                   type="button">
-                  cancle
+                  Cancel
                 </Button>
                 <Button className="mt-2" type="submit" disabled={loading}>
                   {loading ? (

@@ -19,10 +19,10 @@ const InterviewIdPage = ({ params }) => {
       try {
         const resolvedParams = await params;
         setInterviewId(resolvedParams.interviewId);
-        console.log(resolvedParams.interviewId);
+        // console.log(resolvedParams.interviewId);
         interviewDetails(resolvedParams.interviewId);
       } catch (error) {
-        console.error("Error unwrapping params:", error);
+         //console.error("Error unwrapping params:", error);
       }
     };
 
@@ -35,10 +35,10 @@ const InterviewIdPage = ({ params }) => {
         .select()
         .from(Interview)
         .where(eq(Interview.mockId, id));
-      console.log(result);
+      // console.log(result);
       setInterviewData(result[0]);
     } catch (error) {
-      console.error("Error fetching interview details:", error);
+       // console.error("Error fetching interview details:", error);
     }
   };
 

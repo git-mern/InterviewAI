@@ -48,7 +48,7 @@ const AnswersPage = ({ interviewQuestion, active, interviewData }) => {
   };
 
   const UpdateUserAnswer = async () => {
-    console.log(answer);
+    //console.log(answer);
     setloading(true);
 
     const feedbackPrompt =

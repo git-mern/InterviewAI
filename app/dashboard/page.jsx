@@ -4,13 +4,14 @@ import InterviewList from "./_components/interviewList";
 
 const Dashboard = () => {
   return (
-    <div className="p-8">
-      <h1 className="font-semibold text-xl">Dashboard</h1>
-      <h1>Create your Interview with best AI</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 my-5">
+    <div className="p-8 ">
+      <div className="flex flex-col justify-center items-center">
+        <h1 className="font-semibold text-xl">Dashboard</h1>
+        <h1>Create your Interview with best AI</h1>
+      </div>
+      <div className="flex justify-center items-center my-5">
         <InterviewAdd />
       </div>
-      <InterviewList />
     </div>
   );
 };

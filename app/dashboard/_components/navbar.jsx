@@ -7,12 +7,9 @@ import React, { useEffect } from "react";
 
 const Navbar = () => {
   const path = usePathname();
-  useEffect(() => {
-    console.log(path);
-  }, []);
 
   return (
-    <div className="flex py-4 px-6 items-center justify-between bg--500 shadow-sm border-t-2 border-neutral-300 shadow-neutral-500 m-4 rounded-full backdrop-blur-md">
+    <div className="flex py-4 px-6 items-center justify-between bg--500 shadow-sm border-t-2 border-neutral-300 shadow-neutral-500 my-4 mx-8 rounded-full backdrop-blur-md">
       <Link href="/dashboard" className="text-red-500 font-bold text-xl ">
         InterviewAI
       </Link>
@@ -25,12 +22,13 @@ const Navbar = () => {
             }`}>
             Dashboard
           </Link>
-          <li
+          <Link
+            href="/dashboard/interview"
             className={`hover:text-black cursor-pointer transition-all hover:font-semibold ${
               path == `/dashboard/interview` && "text-black font-semibold"
             }`}>
-            Interview
-          </li>
+            Interviews
+          </Link>
           <li
             className={`hover:text-black cursor-pointer transition-all hover:font-semibold ${
               path == "/dashboard/how" && "text-black font-semibold"
