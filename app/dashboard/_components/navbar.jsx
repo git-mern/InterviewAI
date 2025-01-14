@@ -37,12 +37,13 @@ const Navbar = () => {
             }`}>
             How it works?
           </li>
-          <li
+          <Link
+            href="/contact"
             className={`hover:text-black cursor-pointer transition-all hover:font-semibold ${
-              path == "/dashboard/contact" && "text-black font-semibold"
+              path == "/contact" && "text-black font-semibold"
             }`}>
             Contact
-          </li>
+          </Link>
         </ul>
       </div>
       <UserButton />
