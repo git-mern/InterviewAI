@@ -86,8 +86,8 @@ const ContactPage = () => {
     <>
       <Navbar />
       <div className="mt-10 rounded-md mx-auto backdrop-blur-xl mb-10 max-w-xl ">
-        <div className="flex flex-col justify-center items-center backdrop-blur-md bg-white/10 p-10 rounded-md mx-10 md:mx-20 shadow-sm shadow-gray-500">
-          <h1 className="text-2xl font-semibold">Contact Me</h1>
+        <div className="flex flex-col justify-center items-center backdrop-blur-md bg-white/10 p-10 rounded-md mx-10 md:mx-20 shadow-sm shadow-black">
+          <h1 className="text-2xl font-semibold">Contact Us</h1>
           {/* <p className="text-muted-foreground">or you can reach me at</p>
           <a href="mailto:pratikpp2302@gmail.com">
             <p className="text-muted-foreground mb-4 flex justify-center items-center">
@@ -126,7 +126,7 @@ const ContactPage = () => {
                 value={formData.email}
                 onChange={handleChange}
                 className="w-full p-2 rounded-md border"
-                placeholder="test@mail.com"
+                placeholder="Ex. name@email.com"
               />
               {errors.email && (
                 <p className="text-red-500 text-sm">{errors.email}</p>
@@ -163,7 +163,7 @@ const ContactPage = () => {
                 value={formData.message}
                 onChange={handleChange}
                 className="w-full p-2 rounded-md border bg-white/5 outline-none"
-                rows={4}
+                rows={3}
                 placeholder="Write message..."
               />
               {errors.message && (

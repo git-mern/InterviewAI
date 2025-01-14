@@ -92,14 +92,14 @@ const InterviewAdd = () => {
           <div
             className="py-10 mx-4 bg-neutral-200 px-32 border rounded-lg hover:scale-105 cursor-pointer hover:shadow-md transition-all"
             onClick={() => setOpen(true)}>
-            <p className="font-semibold flex p-2 ">
+            <p className="font-semibold flex p-2">
               <PlusIcon />
               Create new
             </p>
           </div>
         </DialogTrigger>
 
-        <DialogContent className="max-w-2xl ">
+        <DialogContent className="">
           <DialogHeader>
             <DialogTitle>Interview Details</DialogTitle>
             <DialogTitle className="text-md">
