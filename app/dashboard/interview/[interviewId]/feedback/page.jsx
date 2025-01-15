@@ -9,12 +9,13 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
-import { ChevronsUpDown } from "lucide-react";
+import { ChevronsUpDown, Loader2Icon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 
 const FeedbackPage = ({ params }) => {
   const [feedbackList, setFeedbackList] = useState([]);
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
   useEffect(() => {
     const unwrapParams = async () => {
@@ -32,19 +33,30 @@ const FeedbackPage = ({ params }) => {
   }, [params]);
 
   const getFeedback = async (id) => {
-    const result = await db
-      .select()
-      .from(UserAnswer)
-      .where(eq(UserAnswer.mockIdRef, id))
-      .orderBy(UserAnswer.id);
+    try {
+      setLoading(true);
+      const result = await db
+        .select()
+        .from(UserAnswer)
+        .where(eq(UserAnswer.mockIdRef, id))
+        .orderBy(UserAnswer.id);
 
-    // console.log(result);
-    setFeedbackList(result);
+      // console.log(result);
+      setFeedbackList(result);
+    } catch (error) {
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <div className="p-10 bg--400">
-      {feedbackList?.length == 0 ? (
+      {loading ? (
+        <h2 className="flex justify-center items-center font-semibold text-2xl my-8 gap-2">
+          <Loader2Icon className="animate-spin" />
+          Loading...
+        </h2>
+      ) : feedbackList?.length == 0 ? (
         <h2 className="flex justify-center items-center font-semibold text-2xl my-8">
           No Interview Feedback
         </h2>

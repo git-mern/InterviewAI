@@ -8,11 +8,13 @@ import QuestionsPage from "./_components/Questions";
 import AnswersPage from "./_components/Answers";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { Loader2Icon } from "lucide-react";
 
 const StartInterviewPage = ({ params }) => {
   const [interviewData, setInterviewData] = useState();
   const [interviewQuestion, setInterviewQuestion] = useState();
   const [active, setActive] = useState(0);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const unwrapParams = async () => {
@@ -30,6 +32,7 @@ const StartInterviewPage = ({ params }) => {
   }, [params]);
 
   const interviewDetails = async (id) => {
+    setLoading(true);
     try {
       const result = await db
         .select()
@@ -42,14 +45,25 @@ const StartInterviewPage = ({ params }) => {
       setInterviewData(result[0]);
     } catch (error) {
       // console.error("Error fetching interview details:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <QuestionsPage interviewQuestion={interviewQuestion} active={active} />
-
+        {loading ? (
+          <h2 className="flex justify-center items-center gap-2">
+            <Loader2Icon className="animate-spin" />
+            Loading...
+          </h2>
+        ) : (
+          <QuestionsPage
+            interviewQuestion={interviewQuestion}
+            active={active}
+          />
+        )}
         <AnswersPage
           interviewQuestion={interviewQuestion}
           active={active}
