@@ -4,7 +4,7 @@ import InterviewList from "./_components/interviewList";
 
 const Dashboard = () => {
   return (
-    <div className="p-8 ">
+    <div className="p-8 h-screen">
       <div className="flex flex-col justify-center items-center">
         <h1 className="font-semibold text-xl">Dashboard</h1>
         <h1>Create your Interview with best AI</h1>

@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="">
+    <div className="h-screen">
       <Navbar />
       <div className="flex flex-col justify-center items-center mt-20 mx-auto px-4 sm:px-6 lg:px-8 max-w-xl">
         <h1 className="text-2xl sm:text-3xl font-bold text-center">
@@ -22,6 +22,11 @@ export default function Home() {
             <Link href="/dashboard">
               <Button variant="outline" className="border border-black">
                 Dashboard
+              </Button>
+            </Link>
+            <Link href="/dashboard/interview">
+              <Button variant="outline" className="border border-black">
+                Interviews
               </Button>
             </Link>
           </div>
