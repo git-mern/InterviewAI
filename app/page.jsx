@@ -1,36 +1,59 @@
 import { Button } from "@/components/ui/button";
 import Navbar from "./dashboard/_components/navbar";
-import { SignedIn } from "@clerk/nextjs";
+import { SignedIn, SignedOut } from "@clerk/nextjs";
 import Link from "next/link";
+import Features from "@/components/features";
+import Testimonial from "@/components/testimonial";
 
 export default function Home() {
   return (
-    <div className="h-screen">
+    <div className="">
       <Navbar />
-      <div className="flex flex-col justify-center items-center mt-20 mx-auto px-4 sm:px-6 lg:px-8 max-w-xl">
-        <h1 className="text-2xl sm:text-3xl font-bold text-center">
-          Welcome To{" "}
-          <span className="font-extrabold text-red-600 shadow-sm shadow-black dark:shadow-white p-0.5 rounded-md">
-            InterviewAI
-          </span>
-        </h1>
-        <p className="text-lg text-center mt-4">
-          A Perfect Website to Practice your Mock Interviews.
-        </p>
-        <SignedIn>
-          <div className="flex justify-center items-center gap-10 mt-10 px-4 text-center">
-            <Link href="/dashboard">
-              <Button variant="outline" className="border border-black">
-                Dashboard
-              </Button>
-            </Link>
-            <Link href="/dashboard/interview">
-              <Button variant="outline" className="border border-black">
-                Interviews
-              </Button>
-            </Link>
+      <div className="min-h-screen bg-gray-100">
+        {/* Hero Section */}
+        <section className="bg-gradient-to-r from-indigo-500 to-purple-500 text-white py-20 mt-10 mx-2 rounded-md">
+          <div className="container mx-auto px-4 text-center">
+            <h1 className="text-4xl md:text-6xl font-bold mb-6">
+              Mock AI Interview Platform
+            </h1>
+            <p className="text-lg md:text-xl mb-6">
+              Practice your interview skills with AI-driven mock interviews.
+            </p>
+            <SignedIn>
+              <Link href="/dashboard">
+                <Button className="px-8 py-3 text-lg">Join Now</Button>
+              </Link>
+            </SignedIn>
+            <SignedOut>
+              <Link href="/sign-in">
+                <Button className="px-8 py-3 text-lg">Join Now</Button>
+              </Link>
+            </SignedOut>
           </div>
-        </SignedIn>
+        </section>
+
+        {/* Features Section */}
+        <Features />
+        {/* Testimonials Section */}
+        <Testimonial />
+        {/* CTA Section */}
+        <section className="bg-gradient-to-r from-purple-500 to-indigo-500 text-white py-20 mx-2 rounded-md">
+          <div className="container mx-auto px-4 text-center">
+            <h2 className="text-3xl font-bold mb-6">
+              Ready to Improve Your Interview Skills?
+            </h2>
+            <SignedIn>
+              <Link href="/dashboard">
+                <Button className="px-8 py-3 text-lg">Join Now</Button>
+              </Link>
+            </SignedIn>
+            <SignedOut>
+              <Link href="/sign-in">
+                <Button className="px-8 py-3 text-lg">Join Now</Button>
+              </Link>
+            </SignedOut>
+          </div>
+        </section>
       </div>
     </div>
   );
