@@ -6,40 +6,37 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import React from "react";
 
+const links = [
+  { link: "/dashboard", title: "Dashboard", path: "/dashboard" },
+  {
+    link: "/dashboard/interview",
+    title: "Interviews",
+    path: "/dashboard/interview",
+  },
+  { link: "/contact", title: "Contact", path: "/contact" },
+];
+
 const Navbar = () => {
   const path = usePathname();
   const router = useRouter();
 
   return (
-    <div className="flex py-2 px-6 items-center justify-between bg--500 shadow-sm border-t-2 border-neutral-300 shadow-neutral-500 my-4 mx-8 rounded-full backdrop-blur-md">
+    <div className="flex py-2 px-6 items-center justify-between shadow-md border-t-2 border-neutral-300 shadow-neutral-500 my-4 mx-8 rounded-full">
       <Link href="/" className="text-red-500 font-bold text-xl">
         InterviewAI
       </Link>
-      <div>
-        <div className="md:flex gap-4 hidden ">
-          <Link
-            href="/dashboard"
-            className={`hover:text-black cursor-pointer transition ease-in-out py-0.5 px-1 ${
-              path == "/dashboard" && "bg-slate-300 py-0.5 rounded-md px-1"
-            }`}>
-            Dashboard
-          </Link>
-          <Link
-            href="/dashboard/interview"
-            className={`hover:text-black cursor-pointer transition-all py-0.5 px-1  ${
-              path == `/dashboard/interview` &&
-              " bg-slate-300 py-0.5 px-1 rounded-md text-black"
-            }`}>
-            Interviews
-          </Link>
-          <Link
-            href="/contact"
-            className={`hover:text-black cursor-pointer transition-all py-0.5 px-1  ${
-              path == "/contact" && "bg-slate-300 py-0.5 px-1 rounded-md"
-            }`}>
-            Contact
-          </Link>
-        </div>
+      <div className="flex gap-2 items-center">
+        {links.map((links, index) => (
+          <div key={index} className="md:flex gap-4 hidden ">
+            <Link
+              href={links.link}
+              className={`hover:text-black cursor-pointer transition ease-in-out p-1 ${
+                path == links.path && "bg-slate-300 py-0.5 rounded-md px-1"
+              }`}>
+              {links.title}
+            </Link>
+          </div>
+        ))}
       </div>
       <SignedOut>
         <Button
