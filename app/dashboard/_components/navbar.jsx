@@ -21,7 +21,7 @@ const Navbar = () => {
   const router = useRouter();
 
   return (
-    <div className="flex py-2 px-6 items-center justify-between shadow-md border-t-2 border-neutral-300 shadow-neutral-500 my-4 mx-8 rounded-full">
+    <div className="flex py-2 px-6 items-center justify-between shadow-md border-t-2 border-neutral-300 shadow-neutral-500 my-4 mx-8 rounded-xl">
       <Link href="/" className="text-red-500 font-bold text-xl">
         InterviewAI
       </Link>
@@ -30,8 +30,8 @@ const Navbar = () => {
           <div key={index} className="md:flex gap-4 hidden ">
             <Link
               href={links.link}
-              className={`hover:text-black cursor-pointer transition ease-in-out p-1 ${
-                path == links.path && "bg-slate-300 py-0.5 rounded-md px-1"
+              className={`hover:text-black cursor-pointer transition ease-in-out p-1  hover:scale-105 ${
+                path == links.path && "bg-neutral-400 py-0.5 rounded-md px-1"
               }`}>
               {links.title}
             </Link>

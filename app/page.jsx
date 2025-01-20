@@ -4,6 +4,7 @@ import { SignedIn, SignedOut } from "@clerk/nextjs";
 import Link from "next/link";
 import Features from "@/components/features";
 import Testimonial from "@/components/testimonial";
+import { ArrowUp } from "lucide-react";
 
 export default function Home() {
   return (
@@ -84,6 +85,12 @@ export default function Home() {
             </SignedOut>
           </div>
         </section>
+
+        <div className="flex justify-end items-center my-2 py-2 mx-2">
+          <Link href="/" className="bg-neutral-300 p-2 rounded-full">
+            <ArrowUp />
+          </Link>
+        </div>
       </div>
     </div>
   );

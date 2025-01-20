@@ -17,7 +17,7 @@ const Testimonial = () => {
               <div className="flex items-center justify-center">
                 <div className="w-12 h-12 bg-gray-200 rounded-full mr-4"></div>
                 <div className="text-left">
-                  <p className="font-bold text-gray-800">Sarah Johnson</p>
+                  <p className="font-bold text-gray-800">User</p>
                   <p className="text-gray-600">Software Engineer</p>
                 </div>
               </div>
@@ -30,7 +30,7 @@ const Testimonial = () => {
               <div className="flex items-center justify-center">
                 <div className="w-12 h-12 bg-gray-200 rounded-full mr-4"></div>
                 <div className="text-left">
-                  <p className="font-bold text-gray-800">Michael Chen</p>
+                  <p className="font-bold text-gray-800">User</p>
                   <p className="text-gray-600">Product Manager</p>
                 </div>
               </div>
