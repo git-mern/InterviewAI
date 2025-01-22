@@ -10,10 +10,10 @@ export default function Home() {
   return (
     <div className="bg-gradient-to-b from-gray-50 to-white">
       <Navbar />
-      <div className="min-h-screen">
+      <div className="min-h-screen mx-8">
         {/* Hero Section */}
         <section className="relative overflow-hidden py-20 mt-10">
-          <div className="absolute inset-0 bg-gradient-to-r from-indigo-600 to-purple-600 opacity-90" />
+          <div className="absolute inset-0 bg-gradient-to-r from-indigo-600 to-purple-600 opacity-90 rounded-md" />
           {/* Decorative elements */}
           <div className="absolute inset-0 opacity-20">
             <div className="absolute top-20 left-0 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl" />
@@ -54,7 +54,7 @@ export default function Home() {
         <Testimonial />
 
         {/* CTA Section */}
-        <section className="relative overflow-hidden py-24">
+        <section className="relative overflow-hidden py-24 rounded-md">
           <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-indigo-600 opacity-90" />
           <div className="absolute inset-0 opacity-20">
             <div className="absolute bottom-0 left-0 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl" />
