@@ -9,6 +9,7 @@ import Testimonial from "@/components/testimonial";
 import { ArrowUp, ChevronRight } from "lucide-react";
 import { motion } from "framer-motion";
 import Head from "next/head";
+import { AnimatedGoToTop } from "@/components/gototop";
 
 export default function Home() {
   return (
@@ -72,7 +73,7 @@ export default function Home() {
                 </SignedIn>
                 <SignedOut>
                   <Link href="/sign-in">
-                    <Button className="px-10 py-6 text-lg bg-white text-indigo-600 hover:bg-gray-100 transition-all duration-200 shadow-lg hover:shadow-xl rounded-full">
+                    <Button className="px-10 py-6 text-lg bg-white text-indigo-600 hover:bg-gray-100 transition-all duration-200 shadow-lg hover:shadow-xl rounded-full hover:scale-105">
                       Get Started <ChevronRight className="ml-2" />
                     </Button>
                   </Link>
@@ -132,7 +133,7 @@ export default function Home() {
                 </SignedIn>
                 <SignedOut>
                   <Link href="/sign-in">
-                    <Button className="px-10 py-6 text-lg bg-white text-indigo-600 hover:bg-gray-100 transition-all duration-200 shadow-lg hover:shadow-xl rounded-full">
+                    <Button className="px-10 py-6 text-lg bg-white text-indigo-600 hover:bg-gray-100 transition-all duration-200 shadow-lg hover:shadow-xl rounded-full hover:scale-105">
                       Begin Your Journey <ChevronRight className="ml-2" />
                     </Button>
                   </Link>
@@ -141,17 +142,7 @@ export default function Home() {
             </div>
           </section>
 
-          <motion.div
-            className="flex justify-end items-center my-2 py-2 mx-2"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 1 }}>
-            <Link
-              href="/"
-              className="bg-indigo-600 p-3 rounded-full text-white hover:bg-indigo-700 transition-colors duration-200">
-              <ArrowUp size={24} />
-            </Link>
-          </motion.div>
+          <AnimatedGoToTop />
         </div>
       </div>
     </>
