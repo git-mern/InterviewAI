@@ -5,6 +5,7 @@ import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import React from "react";
+import { motion } from "framer-motion";
 
 const links = [
   { link: "/dashboard", title: "Dashboard", path: "/dashboard" },
@@ -25,19 +26,30 @@ const Navbar = () => {
       <Link href="/" className="text-red-500 font-bold text-xl">
         InterviewAI
       </Link>
-      <div className="flex gap-2 items-center">
-        {links.map((links, index) => (
-          <div key={index} className="md:flex gap-4 hidden ">
+      <nav className="flex gap-2 items-center">
+        {links.map((link, index) => (
+          <div key={index} className="md:block hidden relative">
             <Link
-              href={links.link}
-              className={`hover:text-black cursor-pointer transition ease-in-out p-1  hover:scale-105 ${
-                path == links.path && "bg-neutral-400 py-0.5 rounded-md px-1"
+              href={link.link}
+              className={`relative px-3 py-2 rounded-md transition-colors duration-200 ease-in-out ${
+                path === link.path
+                  ? "text-black"
+                  : "text-gray-600 hover:text-black"
               }`}>
-              {links.title}
+              <span className="relative z-10">{link.title}</span>
+              {path === link.path && (
+                <motion.div
+                  className="absolute inset-0 bg-neutral-400 rounded-md"
+                  layoutId="background"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                />
+              )}
             </Link>
           </div>
         ))}
-      </div>
+      </nav>
       <SignedOut>
         <Button
           onClick={() => router.push("/sign-in")}
