@@ -90,7 +90,7 @@ const InterviewAdd = () => {
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
           <div
-            className="py-10 mx-4 bg-neutral-200 px-32 border rounded-lg hover:scale-105 cursor-pointer hover:shadow-md transition-all"
+            className="py-10 mx-4 bg-neutral-200 px-32 border rounded-lg hover:scale-105 cursor-pointer hover:shadow-md transition-all flex justify-center items-center"
             onClick={() => setOpen(true)}>
             <p className="font-semibold flex p-2">
               <PlusIcon />
