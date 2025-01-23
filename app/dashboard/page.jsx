@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 
 const Dashboard = () => {
   return (
-    <div className="p-8 rounded-md">
+    <div className="mt-10 rounded-md">
       <motion.div
         className="max-w-4xl mx-auto"
         initial={{ opacity: 0, y: 20 }}

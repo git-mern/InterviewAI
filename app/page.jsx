@@ -6,7 +6,7 @@ import { SignedIn, SignedOut } from "@clerk/nextjs";
 import Link from "next/link";
 import Features from "@/components/features";
 import Testimonial from "@/components/testimonial";
-import { ArrowUp, ChevronRight } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import { motion } from "framer-motion";
 import Head from "next/head";
 import { AnimatedGoToTop } from "@/components/gototop";
@@ -66,7 +66,7 @@ export default function Home() {
                 transition={{ duration: 0.8, delay: 0.4 }}>
                 <SignedIn>
                   <Link href="/dashboard">
-                    <Button className="px-10 py-6 text-lg bg-white text-indigo-600 hover:bg-gray-100 transition-all duration-200 shadow-lg hover:shadow-xl rounded-full">
+                    <Button className="px-10 py-6 text-lg bg-white text-indigo-600 hover:bg-gray-100 transition-all duration-200 shadow-lg hover:shadow-xl rounded-full hover:scale-105">
                       Launch Dashboard <ChevronRight className="ml-2" />
                     </Button>
                   </Link>
@@ -82,13 +82,10 @@ export default function Home() {
             </div>
           </section>
 
-          {/* Features Section */}
           <Features />
 
-          {/* Testimonials Section */}
           <Testimonial />
 
-          {/* CTA Section */}
           <section className="relative overflow-hidden py-24 rounded-3xl my-20">
             <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-indigo-600 opacity-90" />
             <motion.div
@@ -126,7 +123,7 @@ export default function Home() {
                 transition={{ duration: 0.8, delay: 0.4 }}>
                 <SignedIn>
                   <Link href="/dashboard">
-                    <Button className="px-10 py-6 text-lg bg-white text-indigo-600 hover:bg-gray-100 transition-all duration-200 shadow-lg hover:shadow-xl rounded-full">
+                    <Button className="px-10 py-6 text-lg bg-white text-indigo-600 hover:bg-gray-100 transition-all duration-200 shadow-lg hover:shadow-xl rounded-full hover:scale-105">
                       Start Now <ChevronRight className="ml-2" />
                     </Button>
                   </Link>
