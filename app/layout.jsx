@@ -25,6 +25,9 @@ export default function RootLayout({ children }) {
   return (
     <ClerkProvider>
       <html lang="en">
+        <head>
+          <meta name="google-adsense-account" content="c" />
+        </head>
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
           {children}
