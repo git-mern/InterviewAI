@@ -5,6 +5,7 @@ import { Toaster } from "react-hot-toast";
 import { Toaster as ToasterSonner } from "sonner";
 import { Analytics } from "@vercel/analytics/react";
 import Footer from "@/components/footer";
+import Adsense from "@/components/adsense";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -35,7 +36,9 @@ export default function RootLayout({ children }) {
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
           {children}
           <Analytics />
+          <Adsense />
           <Footer />
+
           <Toaster />
           <ToasterSonner />
         </body>
