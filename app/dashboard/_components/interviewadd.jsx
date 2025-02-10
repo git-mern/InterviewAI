@@ -27,6 +27,7 @@ const InterviewAdd = () => {
   const [desc, setDesc] = useState();
   const [role, setRole] = useState();
   const [exp, setExp] = useState();
+  const [question, setQuestion] = useState("");
   const [loading, setLoading] = useState(false);
   const [jsonResponse, setJsonResponse] = useState([]);
   const router = useRouter();
@@ -45,7 +46,9 @@ const InterviewAdd = () => {
         desc +
         ", Years of experience:  " +
         exp +
-        ", Depends on Job Position, Job Description and Years of experience give us 5 interview question with answers in JSON format ";
+        ", Depends on Job Position, Job Description and Years of experience give us" +
+        question +
+        "interview question with answers in JSON format ";
 
       const result = await chatSession.sendMessage(prompt);
       const newresponse = result.response
@@ -144,6 +147,42 @@ const InterviewAdd = () => {
                     required
                     onChange={(event) => setExp(event.target.value)}
                   />
+                </DialogDescription>
+              </div>
+              <div className="gap-2 my-3 ">
+                <DialogDescription>
+                  <label htmlFor="" className="text-black">
+                    No of Question{" "}
+                  </label>
+                  <label className="text-muted-foreground text-xs font-bold">
+                    ( min: 1, max: 10 )*
+                  </label>
+                  <Input
+                    className="my-1"
+                    placeholder="Ex. 5/10"
+                    type="number"
+                    required
+                    min="1"
+                    max="10"
+                    value={question}
+                    onChange={(event) => {
+                      const value = event.target.value;
+                      if (value === "") {
+                        setQuestion("");
+                      } else {
+                        let numValue = Number(value);
+                        if (numValue > 10) numValue = 10;
+                        if (numValue < 1) numValue = 1;
+                        setQuestion(numValue);
+                      }
+                    }}
+                    onBlur={() => {
+                      if (question === "") {
+                        setQuestion(1);
+                      }
+                    }}
+                  />
+                  ;
                 </DialogDescription>
               </div>
               <DialogFooter className="gap-2">
