@@ -1,4 +1,4 @@
-### AI Mock Interview Solution for you
+## AI Mock Interview Solution for you
 
 This is a perfect solution for you to practice mock Interviews.
 
@@ -13,3 +13,5 @@ This is a perfect solution for you to practice mock Interviews.
 - Nextjs
 - ReactJS
 - postgresql
+- gemini AI
+- 
