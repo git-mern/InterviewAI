@@ -5,11 +5,12 @@ import { UserAnswer } from "@/utils/schema";
 import { eq } from "drizzle-orm";
 import React, { useEffect, useState } from "react";
 import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from "@/components/ui/collapsible";
-import { ChevronsUpDown, Loader2Icon } from "lucide-react";
+  Accordion,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionContent,
+} from "@/components/ui/accordion";
+import { Loader2Icon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 
@@ -17,98 +18,78 @@ const FeedbackPage = ({ params }) => {
   const [feedbackList, setFeedbackList] = useState([]);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+
   useEffect(() => {
-    const unwrapParams = async () => {
+    const fetchFeedback = async () => {
       try {
+        setLoading(true);
         const resolvedParams = await params;
-        // setInterviewId(resolvedParams.interviewId);
-        // console.log(resolvedParams.interviewId);
-        getFeedback(resolvedParams.interviewId);
+        const result = await db
+          .select()
+          .from(UserAnswer)
+          .where(eq(UserAnswer.mockIdRef, resolvedParams.interviewId))
+          .orderBy(UserAnswer.id);
+        setFeedbackList(result);
       } catch (error) {
-        // console.error("Error unwrapping params:", error);
+        console.error("Error fetching feedback:", error);
+      } finally {
+        setLoading(false);
       }
     };
-
-    unwrapParams();
+    fetchFeedback();
   }, [params]);
 
-  const getFeedback = async (id) => {
-    try {
-      setLoading(true);
-      const result = await db
-        .select()
-        .from(UserAnswer)
-        .where(eq(UserAnswer.mockIdRef, id))
-        .orderBy(UserAnswer.id);
-
-      // console.log(result);
-      setFeedbackList(result);
-    } catch (error) {
-    } finally {
-      setLoading(false);
-    }
-  };
-
   return (
-    <div className="p-10 bg--400">
+    <div className="max-w-3xl mx-auto p-6 bg-white rounded-lg shadow-md mt-6">
       {loading ? (
-        <h2 className="flex justify-center items-center font-semibold text-2xl my-8 gap-2">
-          <Loader2Icon className="animate-spin" />
-          Loading...
-        </h2>
-      ) : feedbackList?.length == 0 ? (
-        <h2 className="flex justify-center items-center font-semibold text-2xl my-8">
-          No Interview Feedback
+        <div className="flex justify-center items-center text-lg font-semibold gap-2">
+          <Loader2Icon className="animate-spin" /> Loading Feedback...
+        </div>
+      ) : feedbackList.length === 0 ? (
+        <h2 className="text-center text-xl font-semibold text-gray-500">
+          No Interview Feedback Available
         </h2>
       ) : (
         <>
-          {/* <h2 className="text-primary text-sm my-3">
-        Your Overall Rating: <strong>7/10</strong>
-      </h2> */}
-          <h1 className="font-semibold text-xl text-green-500">
+          <h1 className="text-2xl font-bold text-green-600 text-center mb-4">
             Congratulations!
           </h1>
-          <h2 className="font-semibold text-base">Your Interview Feedback.</h2>
-          <h2 className="text-sm text-muted-foreground">
-            Find below interview questions with correct Answer, Your Answer and
-            Feedback for improvement.
-          </h2>
-
-          {feedbackList &&
-            feedbackList.map((item, index) => (
-              <div key={index}>
-                <Collapsible className="mt-10">
-                  <CollapsibleTrigger className="p-2 bg-secondary rounded-md my-4 text-left flex justify-between gap-7 w-full">
-                    {item.question}
-                    <ChevronsUpDown className="h-5 w-5" />
-                  </CollapsibleTrigger>
-                  <CollapsibleContent>
-                    <div className="flex flex-col gap-2">
-                      <h2 className="p-2 border rounded-md text-red-700">
-                        <strong>Rating: </strong>
-                        {item.rating}
-                      </h2>
-                      <h2 className="p-2 border rounded-md text-sm text-red-700">
-                        <strong>Your answer:</strong>
-                        {item.userAns}
-                      </h2>
-                      <h2 className="p-2 border rounded-md text-sm text-green-800">
-                        <strong>Correct Answer: </strong>
-                        {item.correctAns}
-                      </h2>
-                      <h2 className="p-2 border rounded-md text-sm mb-4 text-blue-500">
-                        <strong>Feedback: </strong>
-                        {item.feedback}
-                      </h2>
-                    </div>
-                  </CollapsibleContent>
-                </Collapsible>
-              </div>
+          <p className="text-center text-gray-600 mb-6">
+            Here's your interview feedback. Review your responses and suggested
+            improvements.
+          </p>
+          <Accordion type="single" collapsible className="space-y-4">
+            {feedbackList.map((item, index) => (
+              <AccordionItem
+                key={index}
+                value={`item-${index}`}
+                className="border rounded-lg p-4 shadow-sm">
+                <AccordionTrigger className="text-base font-medium flex justify-between items-center">
+                  {item.question}
+                </AccordionTrigger>
+                <AccordionContent className="mt-3 space-y-2">
+                  <p className="p-2 border rounded-md text-sm text-blue-500">
+                    <strong>Rating:</strong> {item.rating}/10
+                  </p>
+                  <p className="p-2 border rounded-md text-sm text-red-700">
+                    <strong>Your Answer:</strong> {item.userAns}
+                  </p>
+                  <p className="p-2 border rounded-md text-sm text-green-700">
+                    <strong>Correct Answer:</strong> {item.correctAns}
+                  </p>
+                  <p className="p-2 border rounded-md text-sm text-gray-700">
+                    <strong>Feedback:</strong> {item.feedback}
+                  </p>
+                </AccordionContent>
+              </AccordionItem>
             ))}
+          </Accordion>
         </>
       )}
-      <div className="flex justify-center items-center my-10">
-        <Button onClick={() => router.replace("/dashboard")}>Go Home</Button>
+      <div className="flex justify-center mt-6">
+        <Button onClick={() => router.replace("/dashboard")} variant="default">
+          Go Home
+        </Button>
       </div>
     </div>
   );
