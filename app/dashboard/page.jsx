@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 
 const Dashboard = () => {
   return (
-    <div className="mt-10 flex justify-center items-center min-h-screen rounded-md px-4">
+    <div className="flex justify-center items-center min-h-screen rounded-md px-4">
       <motion.div
         className="w-full max-w-3xl bg-white/80 backdrop-blur-lg shadow-xl rounded-3xl p-10 border border-white/40"
         initial={{ opacity: 0, y: 20 }}
