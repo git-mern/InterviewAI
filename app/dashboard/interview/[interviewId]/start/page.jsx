@@ -9,6 +9,7 @@ import AnswersPage from "./_components/Answers";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Loader2Icon } from "lucide-react";
+import { Progress } from "@/components/ui/progress";
 
 const StartInterviewPage = ({ params }) => {
   const [interviewData, setInterviewData] = useState();
@@ -17,18 +18,14 @@ const StartInterviewPage = ({ params }) => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    const unwrapParams = async () => {
+    const fetchInterviewDetails = async () => {
       try {
         const resolvedParams = await params;
-        // setInterviewId(resolvedParams.interviewId);
-        //  console.log(resolvedParams.interviewId);
         interviewDetails(resolvedParams.interviewId);
-      } catch (error) {
-        //  console.error("Error unwrapping params:", error);
-      }
+      } catch (error) {}
     };
 
-    unwrapParams();
+    fetchInterviewDetails();
   }, [params]);
 
   const interviewDetails = async (id) => {
@@ -38,26 +35,26 @@ const StartInterviewPage = ({ params }) => {
         .select()
         .from(Interview)
         .where(eq(Interview.mockId, id));
-
       const jsonRes = JSON.parse(result[0].jsonMockResponse);
-      // console.log(jsonRes);
       setInterviewQuestion(jsonRes);
       setInterviewData(result[0]);
     } catch (error) {
-      // console.error("Error fetching interview details:", error);
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div className="p-6 space-y-6">
+      <div className="text-center text-xl font-semibold">Mock Interview</div>
+
+      <Progress value={(active / (interviewQuestion?.length - 1)) * 100} />
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {loading ? (
-          <h2 className="flex justify-center items-center gap-2">
-            <Loader2Icon className="animate-spin" />
-            Loading...
-          </h2>
+          <div className="flex justify-center items-center gap-2 text-lg">
+            <Loader2Icon className="animate-spin" /> Loading...
+          </div>
         ) : (
           <QuestionsPage
             interviewQuestion={interviewQuestion}
@@ -71,22 +68,23 @@ const StartInterviewPage = ({ params }) => {
         />
       </div>
 
-      <div className="gap-3 flex justify-end items-center mb-5">
-        {active > 0 && (
-          <Button onClick={() => setActive(active - 1)} variant="outline">
-            Previous
-          </Button>
-        )}
-
-        {active != interviewQuestion?.length - 1 && (
+      <div className="flex justify-between items-center mt-6">
+        <Button
+          disabled={active === 0}
+          onClick={() => setActive(active - 1)}
+          variant="outline">
+          Previous
+        </Button>
+        <span className="text-muted-foreground">
+          {active + 1} / {interviewQuestion?.length}
+        </span>
+        {active !== interviewQuestion?.length - 1 ? (
           <Button onClick={() => setActive(active + 1)} variant="outline">
             Next
           </Button>
-        )}
-
-        {active == interviewQuestion?.length - 1 && (
+        ) : (
           <Link href={`/dashboard/interview/${interviewData?.mockId}/feedback`}>
-            <Button variant="destructive">End</Button>
+            <Button variant="destructive">End Interview</Button>
           </Link>
         )}
       </div>

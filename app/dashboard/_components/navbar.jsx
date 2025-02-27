@@ -25,7 +25,7 @@ const Navbar = () => {
   }, [path]);
 
   return (
-    <div className="mx-4 mt-4 z-50 bg-black/20 backdrop-blur-lg shadow-lg border-b border-gray-300 rounded-lg">
+    <div className="mx-4 mt-4 z-50 bg-gray-200 backdrop-blur-lg shadow-lg border-b border-gray-300 rounded-lg">
       <div className="flex items-center justify-between py-3 px-6 mx-auto max-w-7xl">
         {/* Logo */}
         <Link
