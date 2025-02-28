@@ -78,7 +78,7 @@ const Navbar = () => {
             <Button
               onClick={() => router.push("/sign-in")}
               variant="outline"
-              className="font-semibold px-4 py-2 border-gray-500 hover:border-black hidden md:flex">
+              className="font-semibold px-4 py-2 border-gray-500 hover:border-black">
               Login
             </Button>
           </SignedOut>
@@ -99,7 +99,7 @@ const Navbar = () => {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            className="top-full left-0 w-full bg-neutral-200 shadow-lg rounded-lg p-6 flex flex-col gap-4 md:hidden"
+            className="top-full left-0 w-full bg-neutral-200 shadow-lg rounded-lg p-6 flex flex-col justify-center items-center gap-4 md:hidden"
             initial={{ y: -20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: -20, opacity: 0 }}
@@ -108,7 +108,7 @@ const Navbar = () => {
               <Link
                 key={index}
                 href={link.link}
-                className={`block  w-fit px-6 text-lg font-medium transition-all ${
+                className={`block w-fit px-6 text-lg font-medium transition-all ${
                   path === link.link
                     ? "text-black font-bold"
                     : "text-gray-700 hover:text-black"
