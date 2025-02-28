@@ -7,6 +7,7 @@ import { usePathname, useRouter } from "next/navigation";
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import Image from "next/image";
 
 const links = [
   { link: "/dashboard", title: "Dashboard" },
@@ -30,7 +31,14 @@ const Navbar = () => {
         {/* Logo */}
         <Link
           href="/"
-          className="text-2xl font-extrabold text-transparent bg-gradient-to-r from-red-500 to-purple-500 bg-clip-text">
+          className="flex justify-center items-center gap-2 text-base md:text-2xl font-extrabold text-transparent bg-gradient-to-r from-red-500 to-purple-500 bg-clip-text">
+          <Image
+            src="/logo.png"
+            alt="logo"
+            width={25}
+            height={25}
+            className="rounded-md"
+          />
           InterviewAI
         </Link>
 
@@ -100,7 +108,7 @@ const Navbar = () => {
               <Link
                 key={index}
                 href={link.link}
-                className={`block text-lg font-medium transition-all ${
+                className={`block  w-fit px-6 text-lg font-medium transition-all ${
                   path === link.link
                     ? "text-black font-bold"
                     : "text-gray-700 hover:text-black"

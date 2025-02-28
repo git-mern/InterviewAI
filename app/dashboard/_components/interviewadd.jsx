@@ -93,10 +93,10 @@ const InterviewAdd = () => {
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
           <div
-            className="py-10 mx-4 bg-neutral-200 px-32 border rounded-lg hover:scale-105 cursor-pointer hover:shadow-md transition-all flex justify-center items-center"
+            className="w-full max-w-md mx-auto sm:max-w-xs  bg-neutral-200 px-6 sm:px-4 py-6 sm:py-4 border rounded-lg hover:scale-105 cursor-pointer hover:shadow-md transition-all flex justify-center items-center"
             onClick={() => setOpen(true)}>
-            <p className="font-semibold flex p-2">
-              <PlusIcon />
+            <p className="font-semibold flex items-center text-base md:text-lg sm:text-base">
+              <PlusIcon className="w-5 h-5 sm:w-4 sm:h-4 mr-2" />
               Create new
             </p>
           </div>

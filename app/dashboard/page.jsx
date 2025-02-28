@@ -15,7 +15,7 @@ const Dashboard = () => {
         {/* Header */}
         <header className="text-center mb-8">
           <motion.h1
-            className="text-5xl font-extrabold text-gray-900 tracking-tight bg-gradient-to-r from-blue-500 to-purple-500 text-transparent bg-clip-text"
+            className="text-2xl md:text-5xl font-extrabold text-gray-900 tracking-tight bg-gradient-to-r from-blue-500 to-purple-500 text-transparent bg-clip-text"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.5 }}>
