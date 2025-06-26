@@ -28,6 +28,13 @@ const Dashboard = () => {
             transition={{ delay: 0.3, duration: 0.5 }}>
             Create your interview with the best AI experience
           </motion.p>
+          <motion.p
+            className="text-lg text-red-700 mt-3"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, duration: 0.5 }}>
+            you can create max 5 interviews{" "}
+          </motion.p>
         </header>
 
         {/* Content Box */}
