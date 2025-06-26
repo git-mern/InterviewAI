@@ -22,6 +22,7 @@ import { useUser } from "@clerk/nextjs";
 import moment from "moment";
 import { useRouter } from "next/navigation";
 import { eq } from "drizzle-orm";
+import Link from "next/link";
 
 const InterviewAdd = () => {
   const [open, setOpen] = useState(false);
@@ -117,28 +118,44 @@ const InterviewAdd = () => {
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
           <div
-            className="w-full max-w-md mx-auto sm:max-w-xs  bg-neutral-200 px-6 sm:px-4 py-6 sm:py-4 border rounded-lg hover:scale-105 cursor-pointer hover:shadow-md transition-all flex justify-center items-center"
+            className="w-full max-w-md mx-auto sm:max-w-xs bg-neutral-200 px-6 sm:px-4 py-6 sm:py-4 border rounded-lg hover:scale-105 cursor-pointer hover:shadow-md transition-all flex justify-center items-center"
             onClick={() => {
               if (!interviewLimitReached) setOpen(true);
             }}>
             <p className="font-semibold flex items-center text-base md:text-lg sm:text-base">
-              <PlusIcon className="w-5 h-5 sm:w-4 sm:h-4 mr-2" />
-              {interviewLimitReached ? "Limit Reached" : "Create new"}
+              {interviewLimitReached ? (
+                <>
+                  <p className="text-red-700">Limit Reached</p>
+                </>
+              ) : (
+                <>
+                  <PlusIcon className="w-5 h-5 sm:w-4 sm:h-4 mr-2" />
+                  Create new
+                </>
+              )}
             </p>
           </div>
         </DialogTrigger>
 
         <DialogContent className="">
           <DialogHeader>
-            <DialogTitle className="flex justify-center items-center text-rose-800 mb-5 text-2xl">
-              Upgrade
-            </DialogTitle>
+            <DialogTitle></DialogTitle>
 
             {interviewLimitReached ? (
-              <p className="text-red-500 mt-4">
-                You have reached the maximum of 5 interviews. Please delete an
-                old one to continue.
-              </p>
+              <>
+                <DialogTitle className="flex justify-center items-center text-amber-500 mb-5 text-2xl">
+                  <Link
+                    href={"/pricing"}
+                    className="px-3 py-1 border rounded-md border-neutral-500 transition ease-in-out hover:bg-black/10
+                    ">
+                    Upgrade
+                  </Link>
+                </DialogTitle>
+                <p className="text-red-500 mt-4 text-center">
+                  You have reached the maximum of 5 interviews. Please delete an
+                  old one to continue.
+                </p>
+              </>
             ) : (
               <>
                 <DialogTitle>Interview Details</DialogTitle>

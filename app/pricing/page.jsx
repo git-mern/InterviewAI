@@ -61,7 +61,7 @@ const PricingSection = () => {
       <div>
         <Link
           href={"/"}
-          className="flex gap-2 border w-fit px-2 py-1 rounded-md mt-5 ml-5 border-black hover:bg-black/10 transition transform ease-in-out duration-300">
+          className="flex gap-2 border w-fit px-2 py-1 rounded-md mt-5 ml-10 border-black hover:bg-black/10 transition transform ease-in-out duration-300">
           <ArrowLeft /> Back
         </Link>
       </div>

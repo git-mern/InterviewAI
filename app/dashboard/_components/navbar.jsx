@@ -1,6 +1,5 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
@@ -8,10 +7,12 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import Image from "next/image";
+import { Button } from "@/components/ui/button";
 
 const links = [
   { link: "/dashboard", title: "Dashboard" },
   { link: "/dashboard/interview", title: "Interviews" },
+  { link: "/pricing", title: "Pricing" },
   { link: "/contact", title: "Contact" },
 ];
 
@@ -43,7 +44,7 @@ const Navbar = () => {
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex gap-6 items-center">
+        <nav className="hidden md:flex gap-1   items-center">
           {links.map((link, index) => (
             <motion.div
               key={index}
