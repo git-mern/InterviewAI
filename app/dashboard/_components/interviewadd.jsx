@@ -122,7 +122,7 @@ const InterviewAdd = () => {
             onClick={() => {
               if (!interviewLimitReached) setOpen(true);
             }}>
-            <p className="font-semibold flex items-center text-base md:text-lg sm:text-base">
+            <div className="font-semibold flex items-center text-base md:text-lg sm:text-base">
               {interviewLimitReached ? (
                 <>
                   <p className="text-red-700">Limit Reached</p>
@@ -133,7 +133,7 @@ const InterviewAdd = () => {
                   Create new
                 </>
               )}
-            </p>
+            </div>
           </div>
         </DialogTrigger>
 
@@ -152,8 +152,8 @@ const InterviewAdd = () => {
                   </Link>
                 </DialogTitle>
                 <p className="text-red-500 mt-4 text-center">
-                  You have reached the maximum of 5 interviews. Please delete an
-                  old one to continue.
+                  You have reached the maximum of 5 interviews. Please Upgrade
+                  to continue.
                 </p>
               </>
             ) : (
