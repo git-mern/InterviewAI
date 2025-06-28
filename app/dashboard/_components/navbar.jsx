@@ -1,6 +1,6 @@
 "use client";
 
-import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
+import { SignedIn, SignedOut, UserButton, useUser } from "@clerk/nextjs";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import React, { useState, useEffect } from "react";
@@ -20,6 +20,7 @@ const Navbar = () => {
   const path = usePathname();
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
+  const user = useUser();
 
   // Close menu when route changes
   useEffect(() => {
@@ -74,6 +75,11 @@ const Navbar = () => {
 
         {/* Right Side: Login + Mobile Menu */}
         <div className="flex items-center gap-4">
+          <SignedIn>
+            <div className="border border-black rounded-md p-2">
+              Hello {user?.user?.primaryEmailAddress?.emailAddress}
+            </div>
+          </SignedIn>
           {/* Auth Buttons */}
           <SignedOut>
             <Button

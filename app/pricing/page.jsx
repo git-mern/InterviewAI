@@ -1,5 +1,6 @@
 import { plans } from "@/lib/plans";
 import { cn } from "@/lib/utils";
+import { SignedIn, SignedOut } from "@clerk/nextjs";
 import { ArrowLeft, ArrowRight, Check } from "lucide-react";
 import Link from "next/link";
 
@@ -39,16 +40,30 @@ const PricingCard = ({ id, name, description, price, items, paymentLink }) => {
       </ul>
 
       <div className="space-y-2 flex justify-center w-full">
-        <Link
-          href={paymentLink}
-          className={cn(
-            "w-full rounded-full flex items-center justify-center bg-gradient-to-r gap-2 py-2 from-rose-800 to-rose-500 hover:from-rose-500 hover:to-rose-800 border-2 text-black transition transform-all duration-300",
-            id === "pro"
-              ? "border-rose-900"
-              : "border-rose-100 from-rose-400 to-rose-500"
-          )}>
-          Buy Now <ArrowRight size={18} />
-        </Link>
+        <SignedIn>
+          <Link
+            href={paymentLink}
+            className={cn(
+              "w-full rounded-full flex items-center justify-center bg-gradient-to-r gap-2 py-2 from-rose-800 to-rose-500 hover:from-rose-500 hover:to-rose-800 border-2 text-black transition transform-all duration-300",
+              id === "pro"
+                ? "border-rose-900"
+                : "border-rose-100 from-rose-400 to-rose-500"
+            )}>
+            Buy Now <ArrowRight size={18} />
+          </Link>
+        </SignedIn>
+        <SignedOut>
+          <Link
+            href={"/sign-in"}
+            className={cn(
+              "w-full rounded-full flex items-center justify-center bg-gradient-to-r gap-2 py-2 from-rose-800 to-rose-500 hover:from-rose-500 hover:to-rose-800 border-2 text-black transition transform-all duration-300",
+              id === "pro"
+                ? "border-rose-900"
+                : "border-rose-100 from-rose-400 to-rose-500"
+            )}>
+            Buy Now <ArrowRight size={18} />
+          </Link>
+        </SignedOut>
       </div>
     </div>
   );
