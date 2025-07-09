@@ -64,7 +64,10 @@ const ContactPage = () => {
     if (validateForm()) {
       setIsSubmitting(true);
       try {
-        await axios.post("http://localhost:5000/api/contact", formData);
+        await axios.post(
+          "https://interviewai-nu.vercel.app/api/contact",
+          formData
+        );
         toast.success("Form submitted successfully!");
         setFormData({ name: "", email: "", subject: "", message: "" });
       } catch (error) {

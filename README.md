@@ -14,4 +14,3 @@ This is a perfect solution for you to practice mock Interviews.
 - ReactJS
 - postgresql
 - gemini AI
-- 
